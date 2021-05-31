@@ -5,7 +5,7 @@ RODRIGO MORALES PEÑA
 BASTIÁN ROLDÁN PULGAR
 ~~~
 
-Link al video: 
+Link al video: https://drive.google.com/file/d/11TKUNUsmE0E2s8ICalx7pb9cDPkd01V-/view?usp=sharing
 
 ## Instrucciones. 
 
