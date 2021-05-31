@@ -62,9 +62,9 @@ class Red:
 
     def crearRedVacia(self, numNeuronasEntrada, numNeuronasSalida):
         self.agregarCapa(numNeuronasEntrada)
-        self.agregarCapa(12)
-        self.agregarCapa(8)
-        self.agregarCapa(4)
+        self.agregarCapa(5)
+        #self.agregarCapa(7)
+        #self.agregarCapa(4)
         self.agregarCapa(numNeuronasSalida)
 
     def agregarCapa(self, numNeuronas):
@@ -114,7 +114,7 @@ def entrenar(Red, instanciaEntrenamiento, valoresEsperados, numIteraciones, lear
     i = 0
     for instancia in listaRandom:
         valorPredecido = Red.predict(instanciaEntrenamiento[instancia])
-        #print("Iteracion", i+1, ":", valorPredecido, valoresEsperados[instancia])
+        print("Iteracion", i+1, ":", valorPredecido, valoresEsperados[instancia])
         Red.actualizaPesos(learningRate, valoresEsperados[instancia])
         i += 1
     print("Cantidad de iteraciones:",numIteraciones," Learning Rate:", learningRate)
@@ -125,17 +125,17 @@ def probar(Red, instanciaPrueba, valoresEsperados, numIteraciones):
     i = 0
     for instancia in listaRandom:
         valorPredecido = Red.predict(instanciaPrueba[instancia])
-        #print("Iteracion", i+1, ":", valorPredecido, valoresEsperados[instancia])
+        print("Iteracion", i+1, ":", valorPredecido, valoresEsperados[instancia])
         if (valorPredecido[0] > valorPredecido[1] and valoresEsperados[instancia][0] > valoresEsperados[instancia][1]) or (valorPredecido[0] < valorPredecido[1] and valoresEsperados[instancia][0] < valoresEsperados[instancia][1]):
             bienPredecidos += 1
         i += 1
     print("Cantidad de iteraciones:",numIteraciones)
-    print("Presicion:",(100*bienPredecidos)/numIteraciones,"%")
+    print("Precision:",(100*bienPredecidos)/numIteraciones,"%")
 
 input = []
 output = []
 
-with open('games3.csv', newline='') as file: #se abre y se lee el archivo 
+with open('games4.csv', newline='') as file: #se abre y se lee el archivo 
     file.readline()
     for line in file:  #linea por linea, se elimina el salto de linea y se separa por coma, para luego agregar a la lista de input
         line = line.replace('\r','')
@@ -145,30 +145,11 @@ with open('games3.csv', newline='') as file: #se abre y se lee el archivo
         input.append(linea)
 
 for i in range(len(input)): #es agregado al output los ganadores y eliminados del input
-    if input[i][1] == 1:
+    if input[i][0] == 1:
         output.append([1, 0])
     else:
         output.append([0, 1])
     input[i].pop(0)
-
-"""with open('games.csv', newline='') as file: #se abre y se lee el archivo 
-    file.readline()
-    for line in file:  #linea por linea, se elimina el salto de linea y se separa por coma, para luego agregar a la lista de input
-        line = line.replace('\r','')
-        linea = line.split(',')
-        for i in range(0, len(linea)): 
-            linea[i] = int(linea[i])
-        input.append(linea)
-
-for i in range(len(input)): #es agregado al output los ganadores y eliminados del input
-    if input[i][4] == 1:
-        output.append([1, 0])
-    else:
-        output.append([0, 1])
-    input[i].pop(4)
-    input[i].pop(2)
-    input[i].pop(1)
-    input[i].pop(0)"""
 
 cantNeuronasEntrada = len(input[0])
 cantNeuronasSalida = len(output[0])
@@ -180,5 +161,6 @@ inputPruebas = input[round(len(input)*0.7):]
 R = Red([])
 R.crearRedVacia(cantNeuronasEntrada, cantNeuronasSalida)
 
-entrenar(R, inputEntrenamiento, output[:round(len(input)*0.7)], len(inputEntrenamiento), 1)
+entrenar(R, inputEntrenamiento, output[:round(len(input)*0.7)], len(inputEntrenamiento), 0.1)
 probar(R, inputPruebas, output[round(len(input)*0.7):], len(inputPruebas))
+
