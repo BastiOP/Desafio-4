@@ -16,7 +16,9 @@ Link al video:
 ## Explicacion del algoritmo
 
 El algoritmo se desarrolló en python, lenguaje mucho más sencillo para trabajar, nos permite construir la red como un grafo, teniendo como nodos las distintas neuronas del perceptrón multicapa. Se crearon dos grandes clases, la más básica es la de una neurona, la cual contiene su valor, el delta que será utilizado en el cálculo del nuevo peso y la conexión con las neuronas de la capa siguiente y la capa anterior, así como también los pesos relacionados con cada una de las neuronas de la capa anterior. La otra clase implementada será la red, la cual solo posee las capas de entrada, las capas ocultas y la de salida. Todas las estructuras de objetos serán listas, entre ellas las neuronas previas y posteriores a una neurona, sus pesos y todas las capas de la red.
+
 En la clase neurona se pueden encontrar métodos de utilidad como la  función  de activación y su derivada, el cálculo del valor de una neurona y el cálculo de los nuevos pesos de esta. Por otro lado, en la clase red podemos encontrar las principales funciones para que el perceptrón multicapa funcione correctamente, entre ellas está la función de predicción de un resultado y la de actualización de los pesos de la red, además se tienen métodos para inicializar la red completa pero vacía, solo con los pesos correspondientes entre las neuronas.
+
 Por último se crearon dos funciones, una que entrenara a la red y otra que se encargará de probar, ambas nos permiten ver los resultados obtenidos tras las predicciones, pero la segunda nos permite ver el porcentaje de precisión al momento de predecir.
 
 ## Coevaluación
